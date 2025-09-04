@@ -19,12 +19,11 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: imagebuilder
 
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -32,6 +31,218 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - fork-name: Lean
+            target: x86
+            subtarget: "64"
+            version: snapshots
+          - fork-name: Lean
+            target: rockchip
+            subtarget: armv8
+            version: snapshots
+          - fork-name: Lean
+            target: ramips
+            subtarget: mt7621
+            version: snapshots
+          - fork-name: Lean
+            target: mediatek
+            subtarget: filogic
+            version: snapshots
+          - fork-name: Lean
+            target: amlogic
+            subtarget: meson8b
+            version: snapshots
+          - fork-name: Lean
+            target: armsr
+            subtarget: armv8
+            version: snapshots
+          - fork-name: Lean
+            target: ath79
+            subtarget: nand
+            version: snapshots
+          - fork-name: Lean
+            target: bcm27xx
+            subtarget: bcm2708
+            version: snapshots
+          - fork-name: Lean
+            target: bcm27xx
+            subtarget: bcm2709
+            version: snapshots
+          - fork-name: Lean
+            target: bcm27xx
+            subtarget: bcm2710
+            version: snapshots
+          - fork-name: Lean
+            target: bcm27xx
+            subtarget: bcm2711
+            version: snapshots
+          - fork-name: Lean
+            target: bcm27xx
+            subtarget: bcm2712
+            version: snapshots
+          - fork-name: Lean
+            target: bcm53xx
+            subtarget: generic
+            version: snapshots
+          - fork-name: Lean
+            target: ipq40xx
+            subtarget: generic
+            version: snapshots
+          - fork-name: Lean
+            target: ipq806x
+            subtarget: generic
+            version: snapshots
+          - fork-name: Lean
+            target: mediatek
+            subtarget: mt7622
+            version: snapshots
+          - fork-name: Lean
+            target: mvebu
+            subtarget: cortexa9
+            version: snapshots
+          - fork-name: Lean
+            target: qualcommax
+            subtarget: ipq50xx
+            version: snapshots
+          - fork-name: Lean
+            target: qualcommax
+            subtarget: ipq60xx
+            version: snapshots
+          - fork-name: Lean
+            target: qualcommax
+            subtarget: ipq807x
+            version: snapshots
+          - fork-name: Lean
+            target: ramips
+            subtarget: mt7620
+            version: snapshots
+          - fork-name: Lean
+            target: ramips
+            subtarget: mt76x8
+            version: snapshots
+          - fork-name: Lean
+            target: sunxi
+            subtarget: cortexa53
+            version: snapshots
+          - fork-name: Lean
+            target: sunxi
+            subtarget: cortexa7
+            version: snapshots
+          - fork-name: Lean
+            target: x86
+            subtarget: generic
+            version: snapshots
+          - fork-name: hanwckf
+            target: mediatek
+            subtarget: mt7981
+            version: snapshots
+          - fork-name: hanwckf
+            target: mediatek
+            subtarget: mt7986
+            version: snapshots
+          - fork-name: Lienol
+            target: x86
+            subtarget: "64"
+            version: snapshots
+          - fork-name: Lienol
+            target: rockchip
+            subtarget: armv8
+            version: snapshots
+          - fork-name: Lienol
+            target: ramips
+            subtarget: mt7621
+            version: snapshots
+          - fork-name: Lienol
+            target: mediatek
+            subtarget: filogic
+            version: snapshots
+          - fork-name: Lienol
+            target: amlogic
+            subtarget: meson8b
+            version: snapshots
+          - fork-name: Lienol
+            target: armsr
+            subtarget: armv8
+            version: snapshots
+          - fork-name: Lienol
+            target: ath79
+            subtarget: nand
+            version: snapshots
+          - fork-name: Lienol
+            target: bcm27xx
+            subtarget: bcm2708
+            version: snapshots
+          - fork-name: Lienol
+            target: bcm27xx
+            subtarget: bcm2709
+            version: snapshots
+          - fork-name: Lienol
+            target: bcm27xx
+            subtarget: bcm2710
+            version: snapshots
+          - fork-name: Lienol
+            target: bcm27xx
+            subtarget: bcm2711
+            version: snapshots
+          - fork-name: Lienol
+            target: bcm27xx
+            subtarget: bcm2712
+            version: snapshots
+          - fork-name: Lienol
+            target: bcm53xx
+            subtarget: generic
+            version: snapshots
+          - fork-name: Lienol
+            target: ipq40xx
+            subtarget: generic
+            version: snapshots
+          - fork-name: Lienol
+            target: ipq806x
+            subtarget: generic
+            version: snapshots
+          - fork-name: Lienol
+            target: mediatek
+            subtarget: mt7622
+            version: snapshots
+          - fork-name: Lienol
+            target: mvebu
+            subtarget: cortexa9
+            version: snapshots
+          - fork-name: Lienol
+            target: qualcommax
+            subtarget: ipq50xx
+            version: snapshots
+          - fork-name: Lienol
+            target: qualcommax
+            subtarget: ipq60xx
+            version: snapshots
+          - fork-name: Lienol
+            target: qualcommax
+            subtarget: ipq807x
+            version: snapshots
+          - fork-name: Lienol
+            target: ramips
+            subtarget: mt7620
+            version: snapshots
+          - fork-name: Lienol
+            target: ramips
+            subtarget: mt76x8
+            version: snapshots
+          - fork-name: Lienol
+            target: sunxi
+            subtarget: cortexa53
+            version: snapshots
+          - fork-name: Lienol
+            target: sunxi
+            subtarget: cortexa7
+            version: snapshots
+          - fork-name: Lienol
+            target: x86
+            subtarget: generic
+            version: snapshots
 
     steps:
       - name: Checkout repository
@@ -68,6 +279,9 @@ jobs:
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=${{ matrix.config.fork-name }}-${{ matrix.config.target }}-${{ matrix.config.subtarget }}-${{ matrix.config.version }}
+            type=raw,value=${{ matrix.config.fork-name }}-${{ matrix.config.target }}-${{ matrix.config.subtarget }}-latest
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
@@ -79,8 +293,13 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          build-args: |
+            RUN_SETUP=1
+            TARGET=${{ matrix.config.target }}/${{ matrix.config.subtarget }}
+            FILE_HOST=https://downloads.sourceforge.net/project/openwrt-forks-build/${{ matrix.config.fork-name }}
+            VERSION_PATH=${{ matrix.config.version }}
+          cache-from: type=gha,scope=${{ matrix.config.fork-name }}-${{ matrix.config.target }}-${{ matrix.config.subtarget }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.config.fork-name }}-${{ matrix.config.target }}-${{ matrix.config.subtarget }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
